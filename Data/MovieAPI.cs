@@ -9,7 +9,7 @@ namespace MovieTracker.Data
         {
             get
             {
-                return "http://localhost/movieservice";
+                return "http://movieservice20170713.azurewebsites.net";
             }
         }
         
