@@ -1,0 +1,17 @@
+﻿@model IPagedList<MovieTracker.Models.Movie>
+
+@{
+    ViewBag.Title = "Buy Movie";
+}
+<div><h2 id="PageCaption">Mark as Owned</h2></div>
+
+    @Html.AntiForgeryToken()
+   
+    @if (Model != null)
+    {
+        ViewBag.AllowMarkAsOwned = true;
+        
+        <div id="movies">
+            @Html.Partial("_MovieList", Model)
+        </div>
+    }

@@ -1,0 +1,133 @@
+C:\Projects\WSM Code Challenge\MovieTracker\bin\MovieTracker.dll.config
+C:\Projects\WSM Code Challenge\MovieTracker\bin\MovieTracker.dll
+C:\Projects\WSM Code Challenge\MovieTracker\bin\MovieTracker.pdb
+C:\Projects\WSM Code Challenge\MovieTracker\bin\Antlr3.Runtime.dll
+C:\Projects\WSM Code Challenge\MovieTracker\bin\Microsoft.Web.Infrastructure.dll
+C:\Projects\WSM Code Challenge\MovieTracker\bin\Newtonsoft.Json.dll
+C:\Projects\WSM Code Challenge\MovieTracker\bin\PagedList.dll
+C:\Projects\WSM Code Challenge\MovieTracker\bin\PagedList.Mvc.dll
+C:\Projects\WSM Code Challenge\MovieTracker\bin\RestSharp.dll
+C:\Projects\WSM Code Challenge\MovieTracker\bin\System.Web.Helpers.dll
+C:\Projects\WSM Code Challenge\MovieTracker\bin\System.Web.Mvc.dll
+C:\Projects\WSM Code Challenge\MovieTracker\bin\System.Web.Optimization.dll
+C:\Projects\WSM Code Challenge\MovieTracker\bin\System.Web.Razor.dll
+C:\Projects\WSM Code Challenge\MovieTracker\bin\System.Web.WebPages.Deployment.dll
+C:\Projects\WSM Code Challenge\MovieTracker\bin\System.Web.WebPages.dll
+C:\Projects\WSM Code Challenge\MovieTracker\bin\System.Web.WebPages.Razor.dll
+C:\Projects\WSM Code Challenge\MovieTracker\bin\TMDbLib.dll
+C:\Projects\WSM Code Challenge\MovieTracker\bin\WebGrease.dll
+C:\Projects\WSM Code Challenge\MovieTracker\bin\PagedList.xml
+C:\Projects\WSM Code Challenge\MovieTracker\bin\PagedList.Mvc.xml
+C:\Projects\WSM Code Challenge\MovieTracker\bin\RestSharp.xml
+C:\Projects\WSM Code Challenge\MovieTracker\bin\System.Web.Helpers.xml
+C:\Projects\WSM Code Challenge\MovieTracker\bin\System.Web.Mvc.xml
+C:\Projects\WSM Code Challenge\MovieTracker\bin\System.Web.Optimization.xml
+C:\Projects\WSM Code Challenge\MovieTracker\bin\System.Web.Razor.xml
+C:\Projects\WSM Code Challenge\MovieTracker\bin\System.Web.WebPages.xml
+C:\Projects\WSM Code Challenge\MovieTracker\bin\System.Web.WebPages.Deployment.xml
+C:\Projects\WSM Code Challenge\MovieTracker\bin\System.Web.WebPages.Razor.xml
+C:\Projects\WSM Code Challenge\MovieTracker\bin\TMDbLib.pdb
+C:\Projects\WSM Code Challenge\MovieTracker\bin\Antlr3.Runtime.pdb
+C:\Projects\WSM Code Challenge\MovieTracker\bin\Newtonsoft.Json.xml
+C:\Projects\WSM Code Challenge\MovieTracker\obj\Debug\MovieTracker.dll
+C:\Projects\WSM Code Challenge\MovieTracker\obj\Debug\MovieTracker.pdb
+C:\Development\MovieTracker\MovieTracker\bin\MovieTracker.dll.config
+C:\Development\MovieTracker\MovieTracker\bin\MovieTracker.dll
+C:\Development\MovieTracker\MovieTracker\bin\MovieTracker.pdb
+C:\Development\MovieTracker\MovieTracker\bin\Antlr3.Runtime.dll
+C:\Development\MovieTracker\MovieTracker\bin\Microsoft.Web.Infrastructure.dll
+C:\Development\MovieTracker\MovieTracker\bin\Newtonsoft.Json.dll
+C:\Development\MovieTracker\MovieTracker\bin\PagedList.dll
+C:\Development\MovieTracker\MovieTracker\bin\PagedList.Mvc.dll
+C:\Development\MovieTracker\MovieTracker\bin\RestSharp.dll
+C:\Development\MovieTracker\MovieTracker\bin\System.Web.Helpers.dll
+C:\Development\MovieTracker\MovieTracker\bin\System.Web.Mvc.dll
+C:\Development\MovieTracker\MovieTracker\bin\System.Web.Optimization.dll
+C:\Development\MovieTracker\MovieTracker\bin\System.Web.Razor.dll
+C:\Development\MovieTracker\MovieTracker\bin\System.Web.WebPages.Deployment.dll
+C:\Development\MovieTracker\MovieTracker\bin\System.Web.WebPages.dll
+C:\Development\MovieTracker\MovieTracker\bin\System.Web.WebPages.Razor.dll
+C:\Development\MovieTracker\MovieTracker\bin\TMDbLib.dll
+C:\Development\MovieTracker\MovieTracker\bin\WebGrease.dll
+C:\Development\MovieTracker\MovieTracker\bin\PagedList.xml
+C:\Development\MovieTracker\MovieTracker\bin\PagedList.Mvc.xml
+C:\Development\MovieTracker\MovieTracker\bin\RestSharp.xml
+C:\Development\MovieTracker\MovieTracker\bin\System.Web.Helpers.xml
+C:\Development\MovieTracker\MovieTracker\bin\System.Web.Mvc.xml
+C:\Development\MovieTracker\MovieTracker\bin\System.Web.Optimization.xml
+C:\Development\MovieTracker\MovieTracker\bin\System.Web.Razor.xml
+C:\Development\MovieTracker\MovieTracker\bin\System.Web.WebPages.xml
+C:\Development\MovieTracker\MovieTracker\bin\System.Web.WebPages.Deployment.xml
+C:\Development\MovieTracker\MovieTracker\bin\System.Web.WebPages.Razor.xml
+C:\Development\MovieTracker\MovieTracker\bin\TMDbLib.pdb
+C:\Development\MovieTracker\MovieTracker\bin\Antlr3.Runtime.pdb
+C:\Development\MovieTracker\MovieTracker\bin\Newtonsoft.Json.xml
+C:\Development\MovieTracker\MovieTracker\obj\Debug\MovieTracker.csprojResolveAssemblyReference.cache
+C:\Development\MovieTracker\MovieTracker\obj\Debug\MovieTracker.dll
+C:\Development\MovieTracker\MovieTracker\obj\Debug\MovieTracker.pdb
+C:\Development\MovieTracker\Site\bin\MovieTracker.dll.config
+C:\Development\MovieTracker\Site\bin\MovieTracker.dll
+C:\Development\MovieTracker\Site\bin\MovieTracker.pdb
+C:\Development\MovieTracker\Site\bin\Antlr3.Runtime.dll
+C:\Development\MovieTracker\Site\bin\Microsoft.Web.Infrastructure.dll
+C:\Development\MovieTracker\Site\bin\Newtonsoft.Json.dll
+C:\Development\MovieTracker\Site\bin\PagedList.dll
+C:\Development\MovieTracker\Site\bin\PagedList.Mvc.dll
+C:\Development\MovieTracker\Site\bin\RestSharp.dll
+C:\Development\MovieTracker\Site\bin\System.Web.Helpers.dll
+C:\Development\MovieTracker\Site\bin\System.Web.Mvc.dll
+C:\Development\MovieTracker\Site\bin\System.Web.Optimization.dll
+C:\Development\MovieTracker\Site\bin\System.Web.Razor.dll
+C:\Development\MovieTracker\Site\bin\System.Web.WebPages.Deployment.dll
+C:\Development\MovieTracker\Site\bin\System.Web.WebPages.dll
+C:\Development\MovieTracker\Site\bin\System.Web.WebPages.Razor.dll
+C:\Development\MovieTracker\Site\bin\TMDbLib.dll
+C:\Development\MovieTracker\Site\bin\WebGrease.dll
+C:\Development\MovieTracker\Site\bin\PagedList.xml
+C:\Development\MovieTracker\Site\bin\PagedList.Mvc.xml
+C:\Development\MovieTracker\Site\bin\RestSharp.xml
+C:\Development\MovieTracker\Site\bin\System.Web.Helpers.xml
+C:\Development\MovieTracker\Site\bin\System.Web.Mvc.xml
+C:\Development\MovieTracker\Site\bin\System.Web.Optimization.xml
+C:\Development\MovieTracker\Site\bin\System.Web.Razor.xml
+C:\Development\MovieTracker\Site\bin\System.Web.WebPages.xml
+C:\Development\MovieTracker\Site\bin\System.Web.WebPages.Deployment.xml
+C:\Development\MovieTracker\Site\bin\System.Web.WebPages.Razor.xml
+C:\Development\MovieTracker\Site\bin\TMDbLib.pdb
+C:\Development\MovieTracker\Site\bin\Antlr3.Runtime.pdb
+C:\Development\MovieTracker\Site\bin\Newtonsoft.Json.xml
+C:\Development\MovieTracker\Site\obj\Debug\MovieTracker.csprojResolveAssemblyReference.cache
+C:\Development\MovieTracker\Site\obj\Debug\MovieTracker.dll
+C:\Development\MovieTracker\Site\obj\Debug\MovieTracker.pdb
+C:\Development\MovieTracker\bin\MovieTracker.dll.config
+C:\Development\MovieTracker\bin\MovieTracker.dll
+C:\Development\MovieTracker\bin\MovieTracker.pdb
+C:\Development\MovieTracker\bin\Antlr3.Runtime.dll
+C:\Development\MovieTracker\bin\Microsoft.Web.Infrastructure.dll
+C:\Development\MovieTracker\bin\Newtonsoft.Json.dll
+C:\Development\MovieTracker\bin\System.Web.Mvc.dll
+C:\Development\MovieTracker\bin\System.Web.Optimization.dll
+C:\Development\MovieTracker\bin\WebGrease.dll
+C:\Development\MovieTracker\bin\System.Web.Mvc.xml
+C:\Development\MovieTracker\bin\System.Web.Optimization.xml
+C:\Development\MovieTracker\bin\Antlr3.Runtime.pdb
+C:\Development\MovieTracker\bin\Newtonsoft.Json.xml
+C:\Development\MovieTracker\obj\Debug\MovieTracker.csprojResolveAssemblyReference.cache
+C:\Development\MovieTracker\obj\Debug\MovieTracker.dll
+C:\Development\MovieTracker\obj\Debug\MovieTracker.pdb
+C:\Projects\MovieTracker\bin\MovieTracker.dll.config
+C:\Projects\MovieTracker\bin\MovieTracker.dll
+C:\Projects\MovieTracker\bin\MovieTracker.pdb
+C:\Projects\MovieTracker\bin\AjaxControlToolkit.dll
+C:\Projects\MovieTracker\bin\Antlr3.Runtime.dll
+C:\Projects\MovieTracker\bin\Microsoft.Web.Infrastructure.dll
+C:\Projects\MovieTracker\bin\Newtonsoft.Json.dll
+C:\Projects\MovieTracker\bin\System.Web.Mvc.dll
+C:\Projects\MovieTracker\bin\System.Web.Optimization.dll
+C:\Projects\MovieTracker\bin\WebGrease.dll
+C:\Projects\MovieTracker\bin\System.Web.Mvc.xml
+C:\Projects\MovieTracker\bin\System.Web.Optimization.xml
+C:\Projects\MovieTracker\bin\Antlr3.Runtime.pdb
+C:\Projects\MovieTracker\bin\Newtonsoft.Json.xml
+C:\Projects\MovieTracker\obj\Debug\MovieTracker.dll
+C:\Projects\MovieTracker\obj\Debug\MovieTracker.pdb

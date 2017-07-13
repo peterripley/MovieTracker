@@ -1,0 +1,18 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<MovieTracker.Models.Movie>
+
+@foreach (var movie in Model)
+{
+    Html.RenderPartial("_Movie", movie);
+}
+
+<script>
+    function removeVoteLinks()
+    {
+        $('.movie-vote').fadeOut(650);
+    }
+    function removeAddLinks() {
+        $('.movie-add').fadeOut(650);
+    }
+</script>

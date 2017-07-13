@@ -1,0 +1,39 @@
+﻿@model MovieTracker.Models.Movie
+
+@{
+    ViewBag.Title = "Find Movie";
+}
+<div><h2 id="PageCaption">Find a Movie...</h2></div>
+
+    @Html.AntiForgeryToken()
+
+    @if (Model != null)
+    {
+        <div id="movies">
+            @Html.Partial("_Movie", Model);
+        </div>
+    }
+    else
+    {
+        <div >
+            <div class="form-group">
+                <table>
+                    <tr>
+                        <td>
+                            <input class="form-control" type="text" id="Title" onblur="javascript: var title = document.getElementById('Title').value; document.getElementById('ajaxCall').href = 'Find?Title=' + title;" autocomplete="off" autofocus />
+                        </td>
+                        <td>
+                            <a href="" id="ajaxCall" data-ajax-update="#movies" data-ajax-mode="replace" data-ajax-method="GET" data-ajax="true" class="form-control" style="text-decoration: none;" >Find</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="movies">
+            </div>
+        </div>
+    }
+
+
+
+
+

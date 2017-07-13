@@ -1,0 +1,64 @@
+﻿.header {
+    top:4px;
+    height: 100px;
+    width: 100%;
+    position: fixed;
+    background: url('../Images/headertitle2.png') no-repeat;
+    background: url('../Images/headerext.png') left repeat;               
+    background-size: contain;
+    z-index: 100;
+}
+
+ul.navigation-bar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    padding-left: 5%;
+}
+
+li.navigation-bar{
+    font-weight:800;
+    float: left;
+    display: inline;
+    width: 15%;
+    text-decoration: none;
+    color: lightgray;
+    padding-top: 5px;
+}
+
+a.navigation-bar:link { color: lightgray; text-decoration:none; font-weight:600; }
+a.navigation-bar:visited { color: lightgray; text-decoration:none; font-weight:600; }
+a.navigation-bar:hover { color: darkgray; text-decoration:none; font-weight:600; }
+a.navigation-bar:active { color: lightgray; text-decoration:none; font-weight:600; }
+
+body {
+    padding-top:0px;
+    margin-top: 0px;
+}
+
+table{
+    text-align:left;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 5%;
+    padding-right: 30%;
+    padding-top: 140px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+

@@ -1,0 +1,17 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<MovieTracker.Models.Movie>
+
+@{
+    ViewBag.Title = "All Movies";
+}
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
+@foreach (var movie in Model)
+{
+    Html.RenderPartial("_Movie", movie);
+}
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

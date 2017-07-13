@@ -1,0 +1,16 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<MovieTracker.Models.Movie>
+@{
+    ViewBag.Title = "Owned Movies";
+}
+
+@Html.PagedListPager(Model, Page => Url.Action("Owned", new { Page }))
+
+<div id="movies">
+    @Html.Partial("_MovieList", Model)
+</div>
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, Page => Url.Action("Owned", new { Page }))

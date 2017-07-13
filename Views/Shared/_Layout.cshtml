@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
+    <meta http-equiv="PRAGMA" content="NO-CACHE">
+    <meta http-equiv="EXPIRES" content="-1">
+
+    <title>@ViewBag.Title - Movie Tracker</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+</head>
+<body>
+    <hr style="height: 4px; top: 0px; color: black; width: 100%; border-top: 4px solid black; margin:0px; position: fixed; z-index:100" />
+    <header class="header" >
+        <a href='@Url.Action("Index", "Movies")'>
+            <img src='@Url.Content("~/Content/Images/headerext.png")' style="height:100%;" />
+            <img src='@Url.Content("~/Content/Images/headertitle2.png")' style="height: 100%;" />
+        </a>
+        <div class="navbar-collapse navbar-inverse" style="top: 90px; position: fixed; width: 100%; height: 30px; background-color: black; text-align:center;">
+            <ul class="navigation-bar">
+                <li class="navigation-bar">@Html.ActionLink("All Movies", "Index", "Movies", null, new { @class = "navigation-bar" })</li>
+                <li class="navigation-bar">@Html.ActionLink("Owned Movies", "Owned", "Movies", null, new { @class = "navigation-bar" })</li>
+                <li class="navigation-bar">@Html.ActionLink("Wanted Movies", "Wanted", "Movies", null, new { @class = "navigation-bar" })</li>
+                <li class="navigation-bar">@Html.ActionLink("Find/Add/Buy Movie", "Find", "Movies", null, new { @class = "navigation-bar" })</li>
+                @* Remove below <li> when not testing *@
+                <li class="navigation-bar">@Html.ActionLink("Clear Cookies", "Index", "Movies",  new { rc = true }, new { @class = "navigation-bar" })</li>       
+            </ul>
+        </div>
+    </header>
+    <div class="body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            &copy; Peter Ripley @DateTime.Now.Year.ToString(). Movie details by <a href="https://www.themoviedb.org" target="_blank"><img src='@Url.Content("~/Content/Images/tmdb-logo.png")' style="height: 20px; padding-top: 0px"/></a>. This product uses the <a href="https://www.themoviedb.org/documentation/api" target="_blank">TMDb api</a> but is not endorsed or certified by TMDb.
+    <br />
+    <br />
+</footer>
+    </div>
+
+    
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
