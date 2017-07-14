@@ -8,7 +8,7 @@
     <table class="table" id="movie-@(Model.Title.GetHashCode().ToString())" style="">
         <tr>
             <td rowspan="4" style="width:170px;">
-                @if (Model.IsInCollection && !Model.IsOwned)
+                @if (Model.TrailerURL != null)
                 {
                     <a href="@Url.Content(Model.TrailerURL)" target="_blank">
                         <img src="@Url.Content(!Model.PosterURL.EndsWith(TMDbMovieDb.PosterSizeCode) ? Model.PosterURL : "~/Content/Images/posterplacholder.jpg")" alt="Poster Image" />
