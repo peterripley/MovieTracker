@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using MovieTracker.Data;
 using MovieTracker.Helpers;
 
 namespace MovieTracker.Models
 {
     public class Movie
     {
+        private string _SortString = null;
+
         public Movie() { }
         public Movie(string Title)
         {
             this.Title = Title;
         }
+
         public int MovieID { get; set; }
         public string Title { get; set; }
         public int VoteCount { get; set; }
@@ -27,5 +27,17 @@ namespace MovieTracker.Models
         public bool IsInCollection { get; set; }
         public bool IsInTMDb { get; set; }
         public Constants.ActionContext ActionContext { get; set; }
+
+        public string SortString
+        {
+            get
+            {
+                if (_SortString == null)
+                {
+                    _SortString = Title.SortString();
+                }
+                return _SortString;
+            }
+        }
     }
 }

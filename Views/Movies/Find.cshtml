@@ -1,10 +1,8 @@
 ﻿@model MovieTracker.Models.Movie
-
 @{
     ViewBag.Title = "Find Movie";
 }
 <div><h2 id="PageCaption">Find a Movie...</h2></div>
-
     @Html.AntiForgeryToken()
 
     @if (Model != null)
@@ -20,10 +18,10 @@
                 <table>
                     <tr>
                         <td>
-                            <input class="form-control" type="text" id="Title" onblur="javascript: var title = document.getElementById('Title').value; document.getElementById('ajaxCall').href = 'Find?Title=' + title;" autocomplete="off" autofocus />
+                            <input class="form-control" type="text" id="Title" onclick="setButtonHref();" onblur="setButtonHref();" autocomplete="off" autofocus />
                         </td>
                         <td>
-                            <a href="" id="ajaxCall" data-ajax-update="#movies" data-ajax-mode="replace" data-ajax-method="GET" data-ajax="true" class="form-control" style="text-decoration: none;" >Find</a>
+                            <a href="" id="ajaxButton" data-ajax-update="#movies" data-ajax-mode="replace" data-ajax-method="GET" data-ajax="true" class="form-control" style="text-decoration: none;" >Search</a>
                         </td>
                     </tr>
                 </table>
@@ -31,6 +29,19 @@
             <div id="movies">
             </div>
         </div>
+        <script>
+            $(document).bind('keydown', function (e) {
+                if (e.which === 13) { 
+                    setButtonHref();
+                    $('#ajaxButton').trigger('click');
+                }
+            });
+
+            function setButtonHref()
+            {
+                document.getElementById('ajaxButton').href = 'Find?Title=' + document.getElementById('Title').value;
+            }
+        </script>
     }
 
 

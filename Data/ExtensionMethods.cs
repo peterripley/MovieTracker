@@ -65,5 +65,22 @@ namespace MovieTracker.Data
             return Date.AddDays(daysToAdd);
         }
 
+        public static string SortString(this String Title)
+        {
+            string modTitle = Title.Trim().ToUpperInvariant();
+            modTitle = modTitle.Replace(":", null);
+            modTitle = modTitle.Replace(",", null);
+            string[] titleElems = modTitle.Split(new string[] { "THE ", "A ", "AN " }, 2, StringSplitOptions.None);
+            modTitle = titleElems.Length > 1 && titleElems[0].Length <= 4 ? titleElems[1] : titleElems[0];
+            string[] sortWords = modTitle.Split(new char[] { ' ' });
+            string sortString = null;
+            
+            for(int index = 0; index < sortWords.Length && index < 4; index++)
+            {
+                sortString += sortWords[index].Substring(0, Math.Min(5 - index, sortWords[index].Length));
+            }
+
+            return sortString;
+        }
     }
 }

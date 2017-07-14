@@ -7,14 +7,28 @@ using MovieTracker.Models;
 using TMDbLib.Objects.Search;
 using PagedList;
 using RestSharp;
+using System.Web.Caching;
 
 namespace MovieTracker.Data
 {
     public class MovieRepository : IMovieRepository
     {
-        private const string _MoviesCacheKey = "MovieRepository.MovieCollection";
-        private const string _TMDbDataCacheKey = "MovieRepository.TMDbDataCollection";
+        private const string MoviesCacheKey = "MovieRepository.MovieCollection";
+        private const string TMDbDataCacheKey = "MovieRepository.TMDbDataCollection";
+        private const int CacheTimeoutHours = 1;
         
+        private List<Movie> MoviesCollectionByTitle
+        {
+            get { return (List<Movie>)HttpRuntime.Cache[MoviesCacheKey]; }
+            set { HttpRuntime.Cache.Insert(MoviesCacheKey, value, null, DateTime.UtcNow.AddMinutes(CacheTimeoutHours * 60), Cache.NoSlidingExpiration); }
+        }
+        
+        private Hashtable TMDbDataCollection
+        {
+            get { return (Hashtable)HttpRuntime.Cache[TMDbDataCacheKey]; }
+            set { HttpRuntime.Cache.Insert(TMDbDataCacheKey, value, null, DateTime.UtcNow.AddMinutes(CacheTimeoutHours * 60), Cache.NoSlidingExpiration); }
+        }
+
         public BaseMovieApi MovieApi { get; set; }
         public TMDbMovieDb TMDbMovieDb { get; set; }
         
@@ -97,11 +111,12 @@ namespace MovieTracker.Data
         {
             Movie movie = null;
             
-            if(Year != null)
-            {
-                movie = GetMoviesCollection().Where(m => m.Title == GetCollectionKey(Title, Year)).FirstOrDefault();
-            }
-            else
+            //if(Year != null)
+            //{
+            //    movie = GetMoviesCollection().Where(m => m.Title == GetCollectionKey(Title, Year)).FirstOrDefault();
+            //}
+
+            if(movie == null)
             {
                 movie = GetMoviesCollection().Where(m => m.Title == Title).FirstOrDefault();
             }
@@ -112,6 +127,7 @@ namespace MovieTracker.Data
                 AddTMDbData(movie);
                 movie.IsInCollection = true;
             }
+
             return movie;
         }
 
@@ -132,23 +148,24 @@ namespace MovieTracker.Data
 
         private IPagedList<Movie>GetMovies(bool? Owned = null, int PageNumber = 1, int ItemsPerPage = 10)
         {
-            IEnumerable<Movie> moviesCollection = GetMoviesCollection();
-            IEnumerable<Movie> filteredMovies = moviesCollection.Where(m => m.IsOwned == (Owned != null ? (bool)Owned.Value : m.IsOwned));
-            IPagedList<Movie> sortedFilteredPagedMovies = filteredMovies.OrderBy(m => m.Title.Replace("The", "").Trim()).ToPagedList(PageNumber, ItemsPerPage);
-            
-            foreach (var movie in sortedFilteredPagedMovies)
+            IPagedList<Movie> moviesCollection = null;
+
+            if (Owned != null && (bool)Owned.Value)
             {
-                movie.IsInCollection = true;
-                movie.Title = GetTitleFromCollectionKey(movie.Title);
-                AddTMDbData(movie);
+                moviesCollection = GetMoviesCollection().Where(m => m.IsOwned == true).ToPagedList(PageNumber, ItemsPerPage); ;
             }
-            return sortedFilteredPagedMovies;
+            else
+            {
+                moviesCollection = GetMoviesCollection().ToPagedList(PageNumber, ItemsPerPage); ;
+            }
+
+            return moviesCollection;
         }
         
         public IPagedList<Movie> FindByTitle(string Title, int PageNumber = 1, int ItemsPerPage = 10)
         {
             // Find movies in our collection
-            List<Movie> moviesByTitle = GetMoviesCollection().Where(m => m.Title.ToLowerInvariant() == Title.ToLowerInvariant()).ToList();
+            List<Movie> moviesByTitle = new List<Movie>(); // GetMoviesCollection().Where(m => m.Title.ToLowerInvariant() == Title.ToLowerInvariant()).ToList();
             moviesByTitle.AddRange(GetMoviesCollection().Where(m => m.Title.ToLowerInvariant().Contains(Title.ToLowerInvariant())).ToList());
             foreach (Movie movie in moviesByTitle)
             {
@@ -180,22 +197,25 @@ namespace MovieTracker.Data
         /// <returns>Returns all movies in the collection.</returns>
         private IEnumerable<Movie> GetMoviesCollection(bool FlushCache = false)
         {
-            IEnumerable<Movie> movies = HttpRuntime.Cache[_MoviesCacheKey] as IEnumerable<Movie>;
-
-            if(movies == null || FlushCache)
+            if(MoviesCollectionByTitle == null || FlushCache)
             {
                 var request = new RestRequest("api/movies", Method.GET);
+                MoviesCollectionByTitle = this.MovieApi.Execute<List<Movie>>(request).OrderBy(m => m.SortString).ToList();
 
-                movies = this.MovieApi.Execute<List<Movie>>(request);
-                // Absolute expiration of 0 minutes--no caching.
-                HttpRuntime.Cache.Insert(_MoviesCacheKey, movies, null, DateTime.Now.AddSeconds(0 * 60), TimeSpan.Zero);
+                foreach (var movie in MoviesCollectionByTitle)
+                {
+                    movie.IsInCollection = true;
+                    movie.Title = GetTitleFromCollectionKey(movie.Title);
+                    AddTMDbData(movie);
+                }
             }
-            return movies;
+
+            return MoviesCollectionByTitle;
         }
 
         public static void FlushMoviesCache()
         {
-            HttpRuntime.Cache.Remove(_MoviesCacheKey);
+            HttpRuntime.Cache.Remove(MoviesCacheKey);
         }
         
         /// <summary>
@@ -256,7 +276,7 @@ namespace MovieTracker.Data
 
         private void AddTMDbData(MovieTracker.Models.Movie Movie, TMDbLib.Objects.Movies.Movie TMDbMovie = null)
         {
-            // Take the top 1 assuming it is most relevant
+            // Take the top 1 because we assume it is the most relevent
             if(TMDbMovie == null)
             {
                 TMDbMovie = GetTMDbMovies(Movie.Title, 1).FirstOrDefault();
@@ -277,19 +297,17 @@ namespace MovieTracker.Data
 
         private Hashtable GetTMDbDataCollection()
         {
-            object TMDbDataCollection = HttpRuntime.Cache[_TMDbDataCacheKey] as Hashtable;
             if (TMDbDataCollection == null)
             {
                 TMDbDataCollection = new Hashtable();
-                // Absolute expiration of 1 hour 
-                HttpRuntime.Cache.Insert(_TMDbDataCacheKey, TMDbDataCollection, null, DateTime.Now.AddMinutes(1 * 60), TimeSpan.Zero);
             }
-            return (Hashtable)TMDbDataCollection;
+
+            return TMDbDataCollection;
         }
 
         public static void FlushTMDbDataCache()
         {
-            HttpRuntime.Cache.Remove(_TMDbDataCacheKey);
+            HttpRuntime.Cache.Remove(TMDbDataCacheKey);
         }
 
         private string GetCollectionKey(string Title, string Year)
