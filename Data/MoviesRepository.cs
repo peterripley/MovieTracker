@@ -232,14 +232,6 @@ namespace MovieTracker.Data
 
             SearchMovie searchMovie = null; //       GetTMDbDataCollection()[Title.ToLowerInvariant()] as SearchMovie;
 
-            //if (searchMovie != null)
-            //{
-            //    TMDbMovie = GetTMDbDataCollection()["movie" + searchMovie.Id] as TMDbLib.Objects.Movies.Movie;
-            //    TMDbMovies.Add(TMDbMovie);
-            //}
-            //else
-            //{
-
             // Get a list of searchMovies 'stubs' that match the title provided
             searchMovies = TMDbMovieDb.SearchMovie(Title).ToList();
 
@@ -315,52 +307,9 @@ namespace MovieTracker.Data
             }
         }
 
-        //private Hashtable GetTMDbDataCollection()
-        //{
-        //    Hashtable TMDbDataCollection = (Hashtable)HttpRuntime.Cache[TMDbDataCacheKey];
-
-        //    if (TMDbDataCollection == null)
-        //    {
-        //        TMDbDataCollection = new Hashtable();
-
-        //        HttpRuntime.Cache.Insert(TMDbDataCacheKey, TMDbDataCollection, null, DateTime.UtcNow.AddMinutes(CacheTimeoutHours * 60), Cache.NoSlidingExpiration);
-        //    }
-
-        //    return TMDbDataCollection;
-        //}
-
         public static void FlushTMDbDataCache()
         {
             HttpRuntime.Cache.Remove(TMDbDataCacheKey);
         }
-
-        //private string GetMoviesCollectionKey(string Title, string Year)
-        //{
-        //    return String.Format("{0}<![{1}]>", Title.ToLowerInvariant(), Year);
-        //}
-
-        //private string GetTitleFromMoviesCollectionKey(string CollectionKey)
-        //{
-        //    if(CollectionKey.Contains("<!["))
-        //    {
-        //        return CollectionKey.Split(new string[] { "<![" }, StringSplitOptions.None)[0];
-        //    }
-        //    else
-        //    {
-        //        return CollectionKey;
-        //    }
-        //}
-
-        //private string GetYearFromMoviesCollectionKey(string CollectionKey)
-        //{
-        //    if(CollectionKey.Contains("]>"))
-        //    {
-        //        return CollectionKey.Split(new string[] { "]>" }, StringSplitOptions.None)[1];
-        //    }
-        //    else
-        //    {
-        //        return CollectionKey;
-        //    }
-        //}
     }
 }
