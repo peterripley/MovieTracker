@@ -24,9 +24,9 @@
                 <li class="navigation-bar">@Html.ActionLink("All Movies", "Index", "Movies", null, new { @class = "navigation-bar" })</li>
                 <li class="navigation-bar">@Html.ActionLink("Owned Movies", "Owned", "Movies", null, new { @class = "navigation-bar" })</li>
                 <li class="navigation-bar">@Html.ActionLink("Wanted Movies", "Wanted", "Movies", null, new { @class = "navigation-bar" })</li>
-                <li class="navigation-bar">@Html.ActionLink("Find/Add/Buy Movie", "Find", "Movies", null, new { @class = "navigation-bar" })</li>
+                <li class="navigation-bar">@Html.ActionLink("Search Movies", "Search", "Movies", null, new { @class = "navigation-bar" })</li>
                 @* Remove below <li> when not testing *@
-                <li class="navigation-bar">@Html.ActionLink("Clear Cookies", "Index", "Movies",  new { rc = true }, new { @class = "navigation-bar" })</li>       
+                @*<li class="navigation-bar">@Html.ActionLink("Clear Cookies", "Index", "Movies",  new { rc = true }, new { @class = "navigation-bar" })</li>*@       
             </ul>
         </div>
     </header>
@@ -34,10 +34,10 @@
         @RenderBody()
         <hr />
         <footer>
-            &copy; Peter Ripley @DateTime.Now.Year.ToString(). Movie details by <a href="https://www.themoviedb.org" target="_blank"><img src='@Url.Content("~/Content/Images/tmdb-logo.png")' style="height: 20px; padding-top: 0px"/></a>. This product uses the <a href="https://www.themoviedb.org/documentation/api" target="_blank">TMDb api</a> but is not endorsed or certified by TMDb.
-    <br />
-    <br />
-</footer>
+            App &copy; Peter Ripley @DateTime.Now.Year.ToString(). Movie details by <a href="https://www.themoviedb.org" target="_blank"><img src='@Url.Content("~/Content/Images/tmdb-logo.png")' style="height: 20px; padding-top: 0px"/></a>. This product uses the <a href="https://www.themoviedb.org/documentation/api" target="_blank">TMDb api</a> but is not endorsed or certified by TMDb.
+            <br />
+            <br />
+        </footer>
     </div>
 
     

@@ -1,6 +1,6 @@
 ﻿@model MovieTracker.Models.Movie
 @{
-    ViewBag.Title = "Find Movie";
+    ViewBag.Title = "Search Movies";
 }
 <div><h2 id="PageCaption">Find a Movie...</h2></div>
     @Html.AntiForgeryToken()
@@ -39,7 +39,7 @@
 
             function setButtonHref()
             {
-                document.getElementById('ajaxButton').href = 'Find?Title=' + document.getElementById('Title').value;
+                document.getElementById('ajaxButton').href = 'Search?Title=' + document.getElementById('Title').value;
             }
         </script>
     }

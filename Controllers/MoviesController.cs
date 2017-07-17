@@ -14,7 +14,7 @@ namespace MovieTracker.Controllers
 {
     public class MoviesController : Controller
     {
-        private IMovieRepository _MovieRepository = null;
+        private IMoviesRepository _MovieRepository = null;
 
         protected override void OnException(ExceptionContext filterContext)
         {
@@ -29,13 +29,13 @@ namespace MovieTracker.Controllers
 
         public MoviesController()
         {
-            this._MovieRepository = new MovieRepository(
+            this._MovieRepository = new MoviesRepository(
                                     new MovieApi(Configuration.MovieApiSid, Configuration.MovieApiKey),
                                     new TMDbMovieDb(Configuration.TheMovieDbApiKey)
                                     );
         }
 
-        public MoviesController(IMovieRepository MovieRepository)
+        public MoviesController(IMoviesRepository MovieRepository)
         {
             this._MovieRepository = MovieRepository;
         }
@@ -76,26 +76,27 @@ namespace MovieTracker.Controllers
 
             if (Request.IsAjaxRequest())
             {
-                return PartialView("_Movie", _MovieRepository.GetByID(Id));
+                return PartialView("_Movie", _MovieRepository.Get(Id));
             }
             else
             {
-                return View(_MovieRepository.GetByID(Id));
+                return View(_MovieRepository.Get(Id));
             }
         }
 
-        // GET: Movies/Find/Title
-        public ActionResult Find(string Title = null, string Year = null, int Page = 1, int ItemsPerPage = 10)
+        // GET: Movies/Search/Title
+        public ActionResult Search(string Title = null, string Year = null, int Page = 1, int ItemsPerPage = 10)
         {
             if (!String.IsNullOrWhiteSpace(Title))
             {
-                if (Request.IsAjaxRequest())
+                if (Request.IsAjaxRequest() || true)
                 {
-                    return PartialView("_MovieList", _MovieRepository.FindByTitle(Title, Page, ItemsPerPage));
+                    return PartialView("_MovieList", _MovieRepository.SearchByTitle(Title, Page, ItemsPerPage));
                 }
                 else
                 {
-                    return PartialView("_MovieList", new PagedList<Movie>(new List<Movie>() { _MovieRepository.GetByTitle(Title) }, Page, ItemsPerPage));
+                    //return PartialView("_MovieList", new PagedList<Movie>(new List<Movie>() { _MovieRepository.SearchByTitle(Title, Page, ItemsPerPage) }, Page, ItemsPerPage));
+                    return PartialView("_MovieList", _MovieRepository.SearchByTitle(Title, Page, ItemsPerPage));
                 }
             }
             else if(Title != String.Empty)
@@ -117,11 +118,12 @@ namespace MovieTracker.Controllers
             {
                 if (Request.IsAjaxRequest())
                 {
-                    return PartialView("_MovieList", _MovieRepository.FindByTitle(Title));
+                    return PartialView("_MovieList", _MovieRepository.SearchByTitle(Title));
                 }
                 else
                 {
-                    return View(new PagedList<Movie>(new List<Movie>() { _MovieRepository.GetByTitle(Title) }, Page, ItemsPerPage));
+                    return null;
+                    //return View(new PagedList<Movie>(new List<Movie>() { _MovieRepository.SearchByTitle(Title) }, Page, ItemsPerPage));
                 }
             }
             else
@@ -130,18 +132,11 @@ namespace MovieTracker.Controllers
             }
         }
 
-        public ActionResult Add(string Title, string Year)
+        public ActionResult Add(string Title, string Year, int TMDbID)
         {
-            _MovieRepository.Add(Title, Year);
-
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView("_Movie", _MovieRepository.GetByTitle(Title, Year));
-            }
-            else
-            {
-                return View(_MovieRepository.GetByTitle(Title, Year));
-            }
+            int movieID = _MovieRepository.Add(Title, Year, TMDbID);
+            
+            return PartialView("_Movie", _MovieRepository.Get(movieID));
         }
 
         public ActionResult Vote(int Id)
@@ -153,7 +148,7 @@ namespace MovieTracker.Controllers
             }
             ViewBag.HasVotedThisWeek = HasVotedThisWeek;
 
-            return PartialView("_Movie", _MovieRepository.GetByID(Id));
+            return PartialView("_Movie", _MovieRepository.Get(Id));
         }
 
         public ActionResult Buy(int Id)
@@ -161,12 +156,13 @@ namespace MovieTracker.Controllers
             ViewBag.HasVotedThisWeek = HasVotedThisWeek;
 
             _MovieRepository.Buy(Id);
-            return PartialView("_Movie", _MovieRepository.GetByID(Id));
+            return PartialView("_Movie", _MovieRepository.Get(Id));
         }
 
         public bool HasVotedThisWeek
         {
             get { return Request.Cookies.AllKeys.Contains("HasVotedThisWeek"); }
+
             set {
                 if (value)
                 {

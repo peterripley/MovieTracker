@@ -25,7 +25,8 @@ namespace MovieTracker.Models
         public string PosterURL { get; set; }
         public string TrailerURL { get; set; }
         public bool IsInCollection { get; set; }
-        public bool IsInTMDb { get; set; }
+        public int TMDbID { get; set; }
+        public bool HasTMDbData { get; set; }
         public Constants.ActionContext ActionContext { get; set; }
 
         public string SortString

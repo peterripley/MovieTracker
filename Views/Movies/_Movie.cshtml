@@ -5,119 +5,115 @@
     ViewBag.Title = "View Movies";
 }
 @{ 
-    <table class="table" id="movie-@(Model.Title.GetHashCode().ToString())" style="">
-        <tr>
-            <td rowspan="4" style="width:170px;">
-                @if (Model.TrailerURL != null)
-                {
-                    <a href="@Url.Content(Model.TrailerURL)" target="_blank">
-                        <img src="@Url.Content(!Model.PosterURL.EndsWith(TMDbMovieDb.PosterSizeCode) ? Model.PosterURL : "~/Content/Images/posterplacholder.jpg")" alt="Poster Image" />
-                    </a>
-                }
-                else
-                {
-                    <img src="@Url.Content(!Model.PosterURL.EndsWith(TMDbMovieDb.PosterSizeCode) ? Model.PosterURL : "~/Content/Images/posterplacholder.jpg")" alt="Poster Image" />
-                }
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <h4 style="padding-top: 0px; margin-top:0px; padding-bottom: 3px; margin-bottom:3px;"><b>@(String.Format("{0} ({1})", Model.Title, Model.Year))</b></h4>
-                <div style="color:#00802b; font-weight: 600;">@Model.Genres</div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div style="font-weight:700; padding-bottom: 5px">@Model.Tagline</div>
-                @{
-                    int overviewLength = Model.Overview != null ? Model.Overview.Length : 0;
-
-                    if (overviewLength > 400)
+    <div id="movie-@(Model.Title.GetHashCode().ToString())">
+        <table class="table" style="">
+            <tr>
+                <td rowspan="4" style="width:170px;">
+                    @if (Model.TrailerURL != null)
                     {
-                        @(Model.Overview.Substring(0, Model.Overview.LastIndexOf(' ', 400)) + "...")
+                        <a href="@Url.Content(Model.TrailerURL)" target="_blank">
+                            <img src="@Url.Content(!Model.PosterURL.EndsWith(TMDbMovieDb.PosterSizeCode) ? Model.PosterURL : "~/Content/Images/posterplacholder.jpg")" alt="Poster Image" />
+                        </a>
                     }
                     else
                     {
-                        @Model.Overview
-                    }
-                    <br />
-                    <div style="padding-top: 8px;">
-                        @if (Model.TrailerURL != null)
-                        {
-                            <a href="@Url.Content(Model.TrailerURL)" target="_blank" >Watch trailer...</a>
-                        }
-                        else
-                        {
-                            <div style="color: lightgray;">(No trailer)</div>
-                        }
-                    </div>
+                        <img src="@Url.Content(!Model.PosterURL.EndsWith(TMDbMovieDb.PosterSizeCode) ? Model.PosterURL : "~/Content/Images/posterplacholder.jpg")" alt="Poster Image" />
                     }
                 </td>
-        </tr>
-        <tr>
-            <td>
-                <div>
-                    <b>Owned:</b> @(Model.IsOwned == true ? "Yes" : "No")
-                    <text>&nbsp;&nbsp;</text>
-                    @if (!Model.IsOwned)
-                    {
-                        <b>Wanted:</b> @(Model.IsInCollection == true ? "Yes" : "No")
-                        <text>&nbsp;&nbsp;</text>
-                            
-                        if (Model.IsInCollection)
+            </tr>
+            <tr>
+                <td>
+                    <h4 style="padding-top: 0px; margin-top:0px; padding-bottom: 3px; margin-bottom:3px;"><b>@(String.Format("{0} ({1})", Model.Title, Model.Year))</b></h4>
+                    <div style="color:#00802b; font-weight: 600;">@Model.Genres</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style="font-weight:700; padding-bottom: 5px">@Model.Tagline</div>
+                    @{
+                        int overviewLength = Model.Overview != null ? Model.Overview.Length : 0;
+
+                        if (overviewLength > 400)
                         {
-                            <b>Votes:</b> @Model.VoteCount.ToString()
-                            <text>&nbsp;&nbsp;</text>
-                            <span class="movie-vote" >
-                                @if(Configuration.IsValidTimeToVote && !(ViewBag.HasVotedThisWeek != null ? ViewBag.HasVotedThisWeek : false) && !(ViewBag.AllowMarkAsOwned != null ? ViewBag.AllowMarkAsOwned : false) && false)
-                                {
-                                    @Ajax.ActionLink(linkText: "Vote to buy", actionName: "Vote", routeValues: new { Id = Model.MovieID },
-                                                        ajaxOptions: new AjaxOptions
-                                                        {
-                                                            UpdateTargetId = "movie-" + Model.Title.GetHashCode().ToString(),
-                                                            InsertionMode = InsertionMode.Replace,
-                                                            HttpMethod = "GET",
-                                                            OnSuccess = ""
-                                                        }
-                                                    )
-                                }
-                                &nbsp;&nbsp;
-                            </span>
+                            @(Model.Overview.Substring(0, Model.Overview.LastIndexOf(' ', 400)) + "...")
                         }
                         else
                         {
-                            <span class="movie-add" >
-                                @if (Configuration.IsValidTimeToVote && !(ViewBag.HasVotedThisWeek != null ? ViewBag.HasVotedThisWeek : false))
+                            @Model.Overview
+                        }
+                        <br />
+                        <div style="padding-top: 8px;">
+                            @if (Model.TrailerURL != null)
+                            {
+                                <a href="@Url.Content(Model.TrailerURL)" target="_blank" >Watch trailer...</a>
+                            }
+                            else
+                            {
+                                <div style="color: lightgray;">(No trailer)</div>
+                            }
+                        </div>
+                        }
+                    </td>
+            </tr>
+            <tr>
+                <td>
+                    <div>
+                        <b>Owned:</b> @(Model.IsOwned == true ? "Yes" : "No")
+                        @if (!Model.IsOwned)
+                        {
+                            <b>Wanted:</b> @(Model.IsInCollection == true ? "Yes" : "No")
+                            if (Model.IsInCollection)
+                            {
+                                <b>Votes:</b> @Model.VoteCount.ToString()
+                                <span class="movie-vote" >
+                                    @if(Configuration.IsValidTimeToVote && !(ViewBag.HasVotedThisWeek != null ? ViewBag.HasVotedThisWeek : false) && !(ViewBag.AllowMarkAsOwned != null ? ViewBag.AllowMarkAsOwned : false) && false)
+                                    {
+                                        @Ajax.ActionLink(linkText: "Vote to buy", actionName: "Vote", routeValues: new { Id = Model.MovieID },
+                                                            ajaxOptions: new AjaxOptions
+                                                            {
+                                                                UpdateTargetId = "movie-" + Model.Title.GetHashCode().ToString(),
+                                                                InsertionMode = InsertionMode.Replace,
+                                                                HttpMethod = "GET",
+                                                                OnSuccess = ""
+                                                            }
+                                                        )
+                                    }
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="movie-add" >
+                                    @if (Configuration.IsValidTimeToVote && !(ViewBag.HasVotedThisWeek != null ? ViewBag.HasVotedThisWeek : false) || true)
+                                    {
+                                        @Ajax.ActionLink(linkText: "Add as wanted", actionName: "Add", routeValues: new { Title = Model.Title, Year = Model.Year, TMDbID = Model.TMDbID },
+                                                            ajaxOptions: new AjaxOptions
+                                                            {
+                                                                UpdateTargetId = "movie-" + Model.Title.GetHashCode().ToString(),
+                                                                InsertionMode = InsertionMode.Replace,
+                                                                HttpMethod = "GET",
+                                                                OnSuccess = ""
+                                                            }
+                                                        )
+                                    }
+                                </span>
+                            }
+                            <span class="movie-own">
+                                @if(ViewBag.AllowMarkAsOwned != null ? ViewBag.AllowMarkAsOwned : false && false)
                                 {
-                                    @Ajax.ActionLink(linkText: "Add as wanted", actionName: "Add", routeValues: new { Title = Model.Title, Year = Model.Year },
+                                    @Ajax.ActionLink(linkText: "Mark as owned", actionName: "MarkAsOwned", routeValues: new { Id = Model.MovieID },
                                                         ajaxOptions: new AjaxOptions
                                                         {
                                                             UpdateTargetId = "movie-" + Model.Title.GetHashCode().ToString(),
                                                             InsertionMode = InsertionMode.Replace,
-                                                            HttpMethod = "GET",
-                                                            OnSuccess = ""
+                                                            HttpMethod = "GET"
                                                         }
                                                     )
                                 }
                             </span>
                         }
-                        <span class="movie-own">
-                            @if(ViewBag.AllowMarkAsOwned != null ? ViewBag.AllowMarkAsOwned : false && false)
-                            {
-                                @Ajax.ActionLink(linkText: "Mark as owned", actionName: "MarkAsOwned", routeValues: new { Id = Model.MovieID },
-                                                    ajaxOptions: new AjaxOptions
-                                                    {
-                                                        UpdateTargetId = "movie-" + Model.Title.GetHashCode().ToString(),
-                                                        InsertionMode = InsertionMode.Replace,
-                                                        HttpMethod = "GET"
-                                                    }
-                                                )
-                            }
-                        </span>
-                    }
-                </div>
-            </td>
-        </tr>
-    </table>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
 }
-

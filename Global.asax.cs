@@ -16,8 +16,8 @@ namespace MovieTracker
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            MovieRepository.FlushTMDbDataCache();
-            MovieRepository.FlushMoviesCache();
+            MoviesRepository.FlushTMDbDataCache();
+            MoviesRepository.FlushMoviesCache();
         }
         
         protected void Application_BeginRequest()

@@ -133,10 +133,10 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Data\BaseMovieApi.cs" />
-    <Compile Include="Data\IMovieRepository.cs" />
+    <Compile Include="Data\IMoviesRepository.cs" />
     <Compile Include="Data\ITMDMovieDb.cs" />
     <Compile Include="Data\ExtensionMethods.cs" />
-    <Compile Include="Data\MovieRepository.cs" />
+    <Compile Include="Data\MoviesRepository.cs" />
     <Compile Include="Data\TMDMovieDb.cs" />
     <Compile Include="Data\MovieAPI.cs" />
     <Compile Include="Global.asax.cs">
@@ -197,7 +197,7 @@
     <Content Include="Views\Movies\_Movie.cshtml" />
     <Content Include="Views\Movies\Wanted.cshtml" />
     <Content Include="Views\Movies\Add.cshtml" />
-    <Content Include="Views\Movies\Find.cshtml" />
+    <Content Include="Views\Movies\Search.cshtml" />
     <Content Include="Views\Movies\Details.cshtml" />
     <Content Include="Views\Movies\_MovieList.cshtml" />
     <Content Include="Views\Movies\Owned.cshtml" />

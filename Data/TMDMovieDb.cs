@@ -63,12 +63,26 @@ namespace MovieTracker.Data
 
         public string GetKeywords(Movie Movie)
         {
-            return string.Join(", ", Movie.Keywords.Keywords.Select(k => k.Name).ToArray());
+            string keywordsString = "No Keywords Defined";
+
+            if (Movie.Keywords != null)
+            {
+                keywordsString = string.Join(", ", Movie.Keywords.Keywords.Select(k => k.Name).ToArray());
+            }
+
+            return keywordsString;
         }
 
         public string GetGenres(Movie Movie)
         {
-            return string.Join(" | ", Movie.Genres.Select(g => g.Name).ToArray());
+            string genresString = "No Genres Associated";
+
+            if (Movie.Genres != null)
+            {
+                genresString = string.Join(" | ", Movie.Genres.Select(g => g.Name).ToArray());
+            }
+
+            return genresString;
         }
     }
 }
