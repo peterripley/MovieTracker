@@ -7,7 +7,7 @@ namespace MovieTracker.Helpers
 {
     public static class Configuration
     {
-        public static string MovieApiUrl = System.Configuration.ConfigurationManager.AppSettings["MovieApiApiUrl"];
+        public static string MovieApiUrl = System.Configuration.ConfigurationManager.AppSettings["MovieApiUrl"];
         public static string MovieApiSid = System.Configuration.ConfigurationManager.AppSettings["MovieApiSid"];
         public static string MovieApiKey = System.Configuration.ConfigurationManager.AppSettings["MovieApiApiKey"];
         public static string TheMovieDbApiUrl = System.Configuration.ConfigurationManager.AppSettings["TheMovieDbApiUrl"];
@@ -24,6 +24,4 @@ namespace MovieTracker.Helpers
             }
         }
     }
-
-
-}
+ }

@@ -156,7 +156,7 @@ namespace MovieTracker.Data
             {
                 // Get all movies in the collection, sort and put in the cache
                 var request = new RestRequest("api/movies", Method.GET);
-                moviesCollection = this.MovieApi.Execute<List<Movie>>(request).OrderBy(m => m.SortString);
+                moviesCollection = this.MovieApi.Execute<List<Movie>>(request).Where(m => m.Title != null).OrderBy(m => m.SortString);
 
                 HttpRuntime.Cache.Insert(MoviesCacheKey, moviesCollection, null, DateTime.UtcNow.AddMinutes(CacheTimeoutHours * 60), Cache.NoSlidingExpiration);
             }
@@ -230,7 +230,7 @@ namespace MovieTracker.Data
             TMDbLib.Objects.Movies.Movie TMDbMovie = null;
             List<SearchMovie> searchMovies = null;
 
-            SearchMovie searchMovie = null; //       GetTMDbDataCollection()[Title.ToLowerInvariant()] as SearchMovie;
+            SearchMovie searchMovie = null; 
 
             // Get a list of searchMovies 'stubs' that match the title provided
             searchMovies = TMDbMovieDb.SearchMovie(Title).ToList();
@@ -247,28 +247,14 @@ namespace MovieTracker.Data
 
                     if (TMDbMovie != null)
                     {
-                        //if (!GetTMDbDataCollection().Contains("movie" + searchMovie.Id))
-                        //{
-                        //    // Add the SearchMovie and the Movie to the cache
-                        //    GetTMDbDataCollection().Add(Title.ToLowerInvariant(), searchMovie);
-                        //    GetTMDbDataCollection().Add("movie" + searchMovie.Id, TMDbMovie);
-                        //}
-
                         // Add the movie to the collection to be returned
                         TMDbMovies.Add(TMDbMovie);
                     }
                 }
 
-                //}
-
-                // Add more movies to the collection to be returned if more than 1 was requested
+                // Add more movies to the collection if more than 1 was requested
                 if (Take > 1)
                 {
-                    //if(searchMovies == null)
-                    //{
-                    //    searchMovies = TMDbMovieDb.SearchMovie(Title).ToList();
-                    //}
-
                     // Add a maximum of the requested number of movies to the collection to be returned, starting at the second
                     for (int index = 1; index < searchMovies.Count && index < Take; index++)
                     {

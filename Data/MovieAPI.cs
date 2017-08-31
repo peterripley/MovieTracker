@@ -9,7 +9,7 @@ namespace MovieTracker.Data
         {
             get
             {
-                return "http://movieservice20170713.azurewebsites.net";
+                return MovieTracker.Helpers.Configuration.MovieApiUrl;
             }
         }
         

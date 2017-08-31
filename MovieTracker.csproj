@@ -154,6 +154,7 @@
     <Content Include="Content\Images\header.png" />
     <Content Include="Content\Images\headerext.png" />
     <Content Include="Content\Images\headertitle2.png" />
+    <Content Include="Content\Images\tmdb-logo.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -162,6 +163,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\Local Debug.pubxml" />
+    <None Include="Properties\PublishProfiles\MovieTracker20170719 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
